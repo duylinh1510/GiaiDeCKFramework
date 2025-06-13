@@ -1,0 +1,32 @@
+@model FlightManagement.Models.CT_CB
+@{
+    ViewData["Title"] = "Cập nhật hành khách";
+}
+<h2> Cập nhật hành khách của chuyến bay</h2>
+
+@if(Model != null)
+{
+    <form asp-action="Edit" asp-controller="CT_CB" method="post">
+        <input type = "hidden" name="mach" value="@Model.MACH"/>
+        <div class = "form-group">
+            <label>Mã hành khách</label>
+            <input name="mahk" class="form-control" value="@Model.MAHK" readonly/> 
+        </div>
+        <div class = "form-group">
+            <label>Tên hành khách</label>
+            <input name="hoten" class="form-control" value="@Model.HOTEN" /> 
+        </div>
+        <div class = "form-group">
+            <label>Loại ghế</label>
+            <select name="loaighe" class="form-control">
+                <option value="Thường" selected="@(!Model.LOAIGHE)">Thường</option>
+                <option value="VIP" selected="@(Model.LOAIGHE)">VIP</option>
+            </select>
+        </div>
+        <div class = "form-group">
+            <label>Số ghế</label>
+            <input name="soghe" class="form-control" value="@Model.SOGHE" /> 
+        </div>
+        <button type="submit" class="btn btn-primary">Cập nhật</button>
+    </form>
+}

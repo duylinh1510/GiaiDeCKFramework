@@ -1,0 +1,61 @@
+@model FlightManagement.Models.ChuyenBayViewModel
+
+@{
+    ViewData["Title"] = "Thêm hành khách vào chuyến bay";
+}
+
+<h2>Thêm hành khách vào chuyến bay</h2>
+
+@if (Model != null)
+{
+    <table class="table table-bordered">
+        <tr>
+            <td>Chuyến</td>
+            <td><input value="@Model.ChuyenBay.CHUYEN" readonly class="form-control" /></td>
+            <td>Ngày bay</td>
+            <td><input value="@(Model.ChuyenBay.NGAY.ToString("dd/MM/yyyy"))" readonly class="form-control" /></td>
+        </tr>
+        <tr>
+            <td>Điểm đi</td>
+            <td><input value="@Model.ChuyenBay.DDI" readonly class="form-control" /></td>
+            <td>Giờ đi</td>
+            <td><input value="@(Model.ChuyenBay.GBAY.ToString(@"hh\:mm"))" readonly class="form-control" /></td>
+        </tr>
+        <tr>
+            <td>Điểm đến</td>
+            <td><input value="@Model.ChuyenBay.DDEN" readonly class="form-control" /></td>
+            <td>Giờ đến</td>
+            <td><input value="@(Model.ChuyenBay.GDEN.ToString(@"hh\:mm"))" readonly class="form-control" /></td>
+        </tr>
+        <tr>
+            <td>Chỗ VIP</td>
+            <td><input value="@Model.SoHanhKhachVip/@Model.ChuyenBay.VIP" readonly class="form-control" /></td>
+            <td>Chỗ thường</td>
+            <td><input value="@Model.SoHanhKhachThuong/@Model.ChuyenBay.THUONG" readonly class="form-control" /></td>
+        </tr>
+    </table>
+}
+
+<form asp-action="Create" asp-controller="CT_CB" method="post">
+    <input type="hidden" name="mach" value="@Model?.ChuyenBay.MACH" />
+    <div class="form-group">
+        <label>Mã hành khách</label>
+        <input name="mahk" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label>Tên hành khách</label>
+        <input name="hoten" class="form-control" required />
+    </div>
+    <div class="form-group">
+        <label>Loại ghế</label>
+        <select name="loaighe" class="form-control">
+            <option value="Thường">Thường</option>
+            <option value="VIP">VIP</option>
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Số ghế</label>
+        <input name="soghe" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-primary">Thêm hành khách</button>
+</form>

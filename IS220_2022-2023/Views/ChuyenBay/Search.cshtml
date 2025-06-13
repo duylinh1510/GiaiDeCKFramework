@@ -1,0 +1,15 @@
+@{
+    ViewData["Title"] = "Xem Thông Tin Chuyến Bay";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Xem Thông Tin Chuyến Bay</h2>
+<form asp-action="Details" asp-controller="ChuyenBay" method="post">
+    <div class="form-group">
+        <label class="control-label">Mã Chuyến Bay</label>
+        <input name="maChuyenBay" class="form-control" value="CB0001"/>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Liệt Kê" class="btn btn-primary"/>
+    </div>
+</form>

@@ -1,0 +1,37 @@
+@model FlightManagement.Models.HanhKhach
+
+@{
+    ViewData["Title"] = "Thêm Hành Khách";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Thêm hành khách</h2>
+<form asp-action="Create" method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="form-group">
+        <label asp-for="MAHK" class="control-label">Mã Hành Khách</label>
+        <input asp-for="MAHK" class="form-control" />
+        <span asp-validation-for="MAHK" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="HOTEN" class="control-label">Tên Hành Khách</label>
+        <input asp-for="HOTEN" class="12form-control" />
+        <span asp-validation-for="HOTEN" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="DIACHI" class="control-label">Địa Chỉ</label>
+        <input asp-for="DIACHI" class="form-control" />
+        <span asp-validation-for="DIACHI" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label asp-for="DIENTHOAI" class="control-label">Điện Thoại</label>
+        <input asp-for="DIENTHOAI" class="form-control" />
+        <span asp-validation-for="DIENTHOAI" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <input type="submit" value="Thêm" class="btn btn-primary" />
+    </div>
+</form>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
