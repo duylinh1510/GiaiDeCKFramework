@@ -1,41 +1,49 @@
 using FlightManagement.Models;
 using Microsoft.AspNetCore.Mvc;
-using System.Data.SqlClient;
 
 namespace FlightManagement.Controllers
 {
     public class HanhKhachController : Controller
     {
-        private readonly string _connectionString;
-        public HanhKhachController(IConfiguration configuration)
+        private readonly StoreContext _storeContext;
+
+        public HanhKhachController(StoreContext storeContext)
         {
-            _connectionString = configuration.GetConnectionString("DefaultConnection");
+            _storeContext = storeContext;
         }
 
-        //GET: HanhKhach/Create
-        public IActionResult Create()
+        //🎯 CÁCH 1: Tên khác nhau cho GET và POST (không dùng ActionName)
+        
+        //GET: HanhKhach/Cau1_ThemThongTinHanhKhach - Hiển thị form thêm hành khách
+        [HttpGet]
+        public IActionResult Cau1_ThemThongTinHanhKhach()
         {
             return View();
         }
 
+        //POST: HanhKhach/XuLyThemHanhKhach - Xử lý thêm hành khách
         [HttpPost]
-        public IActionResult Create(HanhKhach hanhKhach)
+        public IActionResult ThemThongTinHanhKhach(HanhKhach hanhKhach)
         {
-                    using (SqlConnection connection = new SqlConnection(_connectionString))
-                    {
-                        connection.Open();
-                        string sql = "INSERT INTO HANHKHACH(MAHK,HOTEN,DIACHI,DIENTHOAI) VALUES(@MAHK,@HOTEN,@DIACHI,@DIENTHOAI)";
-                        using (SqlCommand cmd = new SqlCommand(sql, connection))
-                        {
-                            cmd.Parameters.AddWithValue("@MAHK", hanhKhach.MAHK);
-                            cmd.Parameters.AddWithValue("@HOTEN", hanhKhach.HOTEN);
-                            cmd.Parameters.AddWithValue("@DIACHI", hanhKhach.DIACHI);
-                            cmd.Parameters.AddWithValue("@DIENTHOAI", hanhKhach.DIENTHOAI);
-                            cmd.ExecuteNonQuery();
-                        }
-                    }
-                    return RedirectToAction("Index", "Home");
-                    return View(hanhKhach);
+            _storeContext.ThemThongTinHanhKhach(hanhKhach);
+            return RedirectToAction("Index", "Home");
         }
+
+        //🎯 CÁCH 2: Cùng tên cho GET và POST (backup methods)
+        
+        //GET: HanhKhach/XemThongTinHanhKhach
+        // [HttpGet]
+        // public IActionResult XemThongTinHanhKhach()
+        // {
+        //     return View();
+        // }
+
+        // //POST: HanhKhach/XemThongTinHanhKhach (cùng tên với GET)
+        // [HttpPost]
+        // public IActionResult XemThongTinHanhKhach(HanhKhach hanhKhach)
+        // {
+        //     _storeContext.ThemThongTinHanhKhach(hanhKhach);
+        //     return RedirectToAction("Index", "Home");
+        // }
     }
 }   

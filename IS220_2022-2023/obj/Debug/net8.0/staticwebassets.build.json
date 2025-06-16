@@ -1,0 +1,20 @@
+{
+  "Version": 1,
+  "Hash": "HJwedcl5eVGrcAUYg2ikrDYbomVAkt8xLZWt3ASsbYE=",
+  "Source": "FlightManagement",
+  "BasePath": "_content/FlightManagement",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [
+    {
+      "Name": "FlightManagement\\wwwroot",
+      "Source": "FlightManagement",
+      "ContentRoot": "L:\\Học Tập\\Năm 3\\HK2 2024-2025\\FrameWork\\.NET\\FlightManagement\\GiaiDeCKFramework\\IS220_2022-2023\\wwwroot\\",
+      "BasePath": "_content/FlightManagement",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [],
+  "Endpoints": []
+}
